@@ -1,6 +1,11 @@
-.qr-creator .mat-form-field{
+.qr-creator .mat-form-field {
   width: 50%;
 }
-.mat-drawer-container{
+
+.qr-image {
+  margin-top: auto;
+}
+
+.qr-creator-header {
   margin: 5%;
 }
