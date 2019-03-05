@@ -1,0 +1,111 @@
+<div class="stage banner-max-height-lg" id="app-stage">
+  <div class="container p-t-lg m-b">
+
+    <div class="mat-drawer-container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <div fxFlex="30%">
+        <div id="qr_size">
+          <button mat-raised-button color="accent" id="qr_download">Download</button>
+        </div>
+        <div id="qr_code_gen" class="img-fluid"></div>
+        <button class="btn btn-primary w-full" type="submit" id="qr_creator">Generate QR Code</button>
+
+      </div>
+      <div fxFlex="70%" class="qr-creator mat-drawer-container">
+        <mat-tab-group [@.disabled]="true">
+          <mat-tab label="URL" class="mat-tab" id="url_form">
+            <form method="post" onsubmit="return sendData(this);">
+              <br>
+              <mat-form-field>
+                <input matInput placeholder="Enter the URL" required>
+              </mat-form-field>
+              <br>
+
+              <input type="hidden" value="url" name="option">
+              <button mat-raised-button color="primary" type="submit">Generate QR Code</button>
+            </form>
+          </mat-tab>
+          <mat-tab label="TEXT" id="text_form">
+            <form method="post" action="" onsubmit="return sendData(this);">
+              <br>
+              <mat-form-field>
+                <input matInput type="text" name="text" placeholder="Enter the Text" required>
+              </mat-form-field>
+              <br>
+              <input type="hidden" value="text" name="option"><br>
+              <button mat-raised-button color="primary" mat-raised-button type="submit">Generate QR Code</button>
+            </form>
+          </mat-tab>
+          <mat-tab label="SMS" id="sms_form">
+            <form method="post" onsubmit="return sendData(this);">
+              <br>
+              <mat-form-field>
+                <input matInput type="tel" name="number" placeholder="Enter phone number" required><br>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <textarea matInput type="text" name="msg" placeholder="Enter the Text" required></textarea>
+              </mat-form-field>
+              <br>
+              <input class="form-control" type="hidden" value="sms" name="option"><br>
+              <button mat-raised-button color="primary" type="submit">Generate QR Code</button>
+            </form>
+          </mat-tab>
+          <mat-tab label="EMAIL" id="email_form">
+            <form method="post" onsubmit="return sendData(this);">
+              <br>
+              <mat-form-field>
+                <input matInput type="email" name="email" placeholder="Enter Email" required>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <input matInput type="text" name="subject" placeholder="Enter the Subject" required>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <textarea matInput rows="4" cols="40" name="msg" placeholder="Enter the Body" required></textarea>
+              </mat-form-field>
+              <br>
+              <input class="form-control" type="hidden" value="email" name="option"><br>
+              <button mat-raised-button color="primary" type="submit">Generate QR Code</button>
+            </form>
+          </mat-tab>
+          <mat-tab label="VCARD" id="vcard_form">
+            <form method="post" onsubmit="return sendData(this);">
+              <mat-form-field>
+                <input matInput type="text" name="fname" placeholder="Enter first name" required>
+              </mat-form-field>&nbsp;
+              <mat-form-field>
+                <input matInput type="text" name="lname" placeholder="Enter last name" required>
+              </mat-form-field><br>
+              <mat-form-field>
+                <input matInput type="tel" name="number" placeholder="Enter mobile" required>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <input matInput type="email" name="email" placeholder="Enter Email" required>
+              </mat-form-field>
+              <br>
+              <input type="hidden" value="vcard" name="option"><br><br>
+              <button mat-raised-button color="primary" type="submit">Generate QR Code</button>
+            </form>
+          </mat-tab>
+          <div class="tab-content p-t-md">
+
+          </div>
+
+        </mat-tab-group>
+        <button type="button" class="panel panel-footer collapsed" style="width: 80%" data-toggle="collapse"
+                data-target="#color">
+          Change Color
+        </button>
+        <div class="collapse" id="color">
+          <label>Foreground Color</label>&nbsp;
+          <button class="btn active jscolor{value:'000000'} color" id="fg_color"></button>
+          <br>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
