@@ -42,6 +42,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
+  MatFormFieldModule
 } from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -54,6 +55,7 @@ import {QrCodeComponent} from './qr-code/qr-code.component';
   exports: [
     CdkTableModule,
     CdkTreeModule,
+    MatFormFieldModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,

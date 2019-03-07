@@ -8,7 +8,12 @@
 .qr-image {
   margin-top: inherit;
 }
-
+.mat-form-field{
+  padding: 5px;
+}
+.mat-card-title{
+  color: blueviolet;
+}
 .qr-creator-header {
   margin: 5%;
 }

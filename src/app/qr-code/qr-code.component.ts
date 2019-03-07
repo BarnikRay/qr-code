@@ -1,14 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {FormGroup, NgForm} from '@angular/forms';
 import * as QRCode from 'qrcode';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-qr-code',
   templateUrl: './qr-code.component.html',
   styleUrls: ['./qr-code.component.css']
 })
+
 export class QrCodeComponent implements OnInit {
   text: string = null;
+  url: string = null;
   email: string;
   number: string;
   msg: string;
@@ -18,6 +21,32 @@ export class QrCodeComponent implements OnInit {
   option: string;
   color: string = null;
   image: string = null;
+  urlRegex = /^(http|https|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+  urlForm = new FormGroup({
+    url: new FormControl('', [Validators.required, Validators.pattern(this.urlRegex)])
+  });
+
+  textForm = new FormGroup({
+    text: new FormControl('', Validators.required),
+  });
+
+  smsForm = new FormGroup({
+    body: new FormControl('', Validators.required),
+    number: new FormControl('', [Validators.required, Validators.minLength(8)])
+  });
+
+  emailForm = new FormGroup({
+    sub: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    body: new FormControl('', Validators.required),
+  });
+
+  vcardForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    fname: new FormControl('', Validators.required),
+    lname: new FormControl('', Validators.required),
+    number: new FormControl('', [Validators.required, Validators.minLength(8)])
+  });
 
   constructor() {
     this.color = '#000000';
@@ -25,6 +54,25 @@ export class QrCodeComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  getErrorMessage() {
+    switch (this.option) {
+      case 'url':
+        return this.urlForm.hasError('required', 'url') ? 'URL is required' : 'Not a valid URL';
+      case 'text':
+        return this.textForm.hasError('required', 'text') ? 'Text is required' : '';
+      case 'sms':
+        if (this.smsForm.controls.number.invalid) {
+          return this.smsForm.hasError('required', 'number') ? 'Number is required' : 'Please enter a valid number';
+        }
+        if (this.smsForm.controls.body.invalid) {
+          return this.smsForm.hasError('required', 'body') ? 'Body is required' : '';
+        }
+      case 'email':
+        return this.emailForm.hasError('required', 'email') ? 'Email is required' : 'Not a valid email';
+
+    }
   }
 
   createQr() {
@@ -42,11 +90,10 @@ export class QrCodeComponent implements OnInit {
     for (const name in form.value) {
       this[name] = form.value[name];
     }
-    this.createQr();
-
-    console.log(this.text);
-    console.log(this.color);
     switch (this.option) {
+      case 'url':
+        this.text = this.url;
+        break;
       case 'email':
         this.text = encodeURI('mailto:' + this.email + '?subject=' + this.subject + '&body=' + this.msg);
         break;
@@ -64,5 +111,7 @@ export class QrCodeComponent implements OnInit {
           'x-qq:21588891\n' +
           'END:VCARD';
     }
+    // console.log(this.text);
+    this.createQr();
   }
 }
