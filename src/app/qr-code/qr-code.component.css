@@ -1,9 +1,12 @@
 .qr-creator .mat-form-field {
   width: 50%;
 }
-
+.qr-creator .mat-expansion-panel{
+  width:80%;
+  max-width: 340px;
+}
 .qr-image {
-  margin-top: auto;
+  margin-top: inherit;
 }
 
 .qr-creator-header {

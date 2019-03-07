@@ -4,12 +4,14 @@
     <div class="qr-creator-header" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
       <div fxFlex="30%" class="qr-image">
         <div id="qr_size" fxLayoutAlign="center">
-          <button mat-raised-button color="accent" id="qr_download">Download</button>
+          <a mat-raised-button color="accent" [href]="image" download="qr.png" id="qr_download">Download</a>
         </div>
-        <div id="qr_code_gen" class="img-fluid"></div>
-        <button class="btn btn-primary w-full" type="submit" id="qr_creator">Generate QR Code</button>
-
-      </div>
+        <br>
+        <div fxLayoutAlign="center">
+          <!--<qrcode [qrdata]="text" [size]="190" [colordark]="color"></qrcode>-->
+          <img [src]="image">
+        </div>
+       </div>
       <div fxFlex="70%" class="qr-creator">
         <mat-tab-group [@.disabled]="true">
           <mat-tab label="URL">
@@ -18,8 +20,8 @@
               <mat-form-field>
                 <input matInput name="text" type="text" ngModel placeholder="Enter the URL" required>
               </mat-form-field>
-              <div *ngIf="text.invalid"
-                   class="alert alert-danger">
+              <!--<div *ngIf="#.invalid && (text.dirty||text.touched)"-->
+                   <!--class="alert alert-danger"></div>-->
 
               <br>
               <button mat-raised-button color="primary" type="submit">Generate QR Code</button>
@@ -46,7 +48,7 @@
                 <textarea matInput type="text" name="msg" ngModel placeholder="Enter the Text" required></textarea>
               </mat-form-field>
               <br>
-              <button mat-raised-button color="primary" type="submit">Generate QR Code</button>
+              <button mat-raised-button color="primary" ngSubmit type="submit">Generate QR Code</button>
             </form>
           </mat-tab>
           <mat-tab label="EMAIL">
@@ -67,7 +69,7 @@
               <button mat-raised-button color="primary" type="submit">Generate QR Code</button>
             </form>
           </mat-tab>
-          <mat-tab>
+          <mat-tab label="VCARD">
             <form #vcard_form="ngForm" (ngSubmit)="option='vcard';formOnSubmit(vcard_form);">
               <mat-form-field>
                 <input matInput type="text" name="fname" ngModel placeholder="Enter first name" required>
@@ -92,16 +94,22 @@
           </div>
 
         </mat-tab-group>
-        <button type="button" class="panel panel-footer collapsed" style="width: 80%" data-toggle="collapse"
-                data-target="#color">
-          Change Color
-        </button>
-        <div class="collapse" id="color">
-          <label>Foreground Color</label>&nbsp;
-          <button class="btn active jscolor{value:'000000'} color" id="fg_color"></button>
+        <br>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Foreground Color
+            </mat-panel-title>
+            <mat-panel-description>
+              Choose your color
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <input matInput
+                 [(colorPicker)]="color" [style.background]="color" [cpPosition]="'bottom'" (colorPickerChange)="createQr();"/>
+        </mat-expansion-panel>
+
           <br>
 
-        </div>
       </div>
     </div>
   </div>

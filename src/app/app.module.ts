@@ -1,6 +1,7 @@
 import '../polyfills';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CdkTableModule} from '@angular/cdk/table';
+import {ColorPickerModule} from 'ngx-color-picker';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
@@ -95,6 +96,7 @@ export class DemoMaterialModule {}
 
 @NgModule({
   imports: [
+    ColorPickerModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
