@@ -1,4 +1,3 @@
-import '../polyfills';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CdkTableModule} from '@angular/cdk/table';
 import {ColorPickerModule} from 'ngx-color-picker';
@@ -109,10 +108,8 @@ export class DemoMaterialModule {}
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  entryComponents: [],
-  declarations: [
-    AppComponent,
-  QrCodeComponent],
+  declarations: [AppComponent,
+    QrCodeComponent],
   bootstrap: [AppComponent],
   providers: []
 })
@@ -120,4 +117,4 @@ export class DemoMaterialModule {}
 export class AppModule {
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+// platformBrowserDynamic().bootstrapModule(AppModule);
