@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup, NgForm} from '@angular/forms';
 import * as QRCode from 'qrcode';
 import {FormControl, Validators} from '@angular/forms';
+import {MatExpansionPanel} from '@angular/material';
 
 @Component({
   selector: 'app-qr-code',
@@ -22,6 +23,9 @@ export class QrCodeComponent implements OnInit {
   color: string = null;
   image: string = null;
   urlRegex = /^(http|https|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+
+  @ViewChild(MatExpansionPanel) colorPicker;
+
   urlForm = new FormGroup({
     url: new FormControl('', [Validators.required, Validators.pattern(this.urlRegex)])
   });
@@ -113,5 +117,9 @@ export class QrCodeComponent implements OnInit {
     }
     // console.log(this.text);
     this.createQr();
+  }
+
+  toggleColorPicker() {
+    this.colorPicker.close();
   }
 }

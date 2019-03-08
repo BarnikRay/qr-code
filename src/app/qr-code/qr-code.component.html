@@ -1,30 +1,28 @@
 <div class="mat-toolbar">
   <mat-toolbar color="primary" fxLayoutAlign="center center">
-    <span>
       <h2>Create your QR Code for free</h2>
-    </span>
   </mat-toolbar>
 </div>
     <div class="qr-creator-header" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-      <mat-card>
+      <mat-card fxLayoutWrap>
       <div fxFlex="30%" class="qr-image">
         <div id="qr_size" fxLayoutAlign="center">
           <a mat-raised-button color="accent" [href]="image" download="qr.png" id="qr_download">Download</a>
         </div>
         <br>
         <div fxLayoutAlign="center">
-          <img [src]="image">
+          <img [src]="image" alt="Download your QR Code!">
         </div>
       </div>
       <div fxFlex="70%" class="qr-creator">
         <mat-card>
           <mat-card-title fxLayoutAlign="center">Select the Category</mat-card-title>
-        <mat-tab-group [@.disabled]="true">
+        <mat-tab-group [@.disabled]="true" (selectedTabChange)="toggleColorPicker();">
           <mat-tab label="URL">
             <form #url_form="ngForm" [formGroup]="urlForm" (ngSubmit)="option='url';formOnSubmit(url_form);">
               <br>
               <mat-form-field>
-                <input matInput formControlName="url" placeholder="Enter the URL" required>
+                <input matInput formControlName="url" placeholder="Enter the full URL" required>
                 <mat-error *ngIf="urlForm.hasError('required','url')">URL is needed</mat-error>
                 <mat-error *ngIf="urlForm.hasError('pattern','url')">URL is not valid</mat-error>
               </mat-form-field>
@@ -121,7 +119,7 @@
           </mat-tab>
         </mat-tab-group>
         <br>
-        <mat-expansion-panel>
+        <mat-expansion-panel id="colorPicker">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Foreground Color
@@ -140,4 +138,7 @@
       </div>
       </mat-card>
     </div>
+<mat-toolbar class="footer">
+  <h4>Designed by BARNIK</h4>
+</mat-toolbar>
 <router-outlet></router-outlet>
