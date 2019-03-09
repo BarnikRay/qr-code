@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormGroup, NgForm} from '@angular/forms';
+import {FormGroup, NgForm,FormControl, Validators} from '@angular/forms';
 import * as QRCode from 'qrcode';
-import {FormControl, Validators} from '@angular/forms';
 import {MatExpansionPanel} from '@angular/material';
 
 @Component({
@@ -11,7 +10,7 @@ import {MatExpansionPanel} from '@angular/material';
 })
 
 export class QrCodeComponent implements OnInit {
-  text: string = null;
+  text: string = "https://qr-bar-creator.firebaseapp.com";
   url: string = null;
   email: string;
   number: string;
@@ -23,6 +22,7 @@ export class QrCodeComponent implements OnInit {
   color: string = null;
   image: string = null;
   urlRegex = /^(http|https|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+  mobileToggle=true;
 
   @ViewChild(MatExpansionPanel) colorPicker;
 
@@ -57,33 +57,15 @@ export class QrCodeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.createQr();
 
-  }
-
-  getErrorMessage() {
-    switch (this.option) {
-      case 'url':
-        return this.urlForm.hasError('required', 'url') ? 'URL is required' : 'Not a valid URL';
-      case 'text':
-        return this.textForm.hasError('required', 'text') ? 'Text is required' : '';
-      case 'sms':
-        if (this.smsForm.controls.number.invalid) {
-          return this.smsForm.hasError('required', 'number') ? 'Number is required' : 'Please enter a valid number';
-        }
-        if (this.smsForm.controls.body.invalid) {
-          return this.smsForm.hasError('required', 'body') ? 'Body is required' : '';
-        }
-      case 'email':
-        return this.emailForm.hasError('required', 'email') ? 'Email is required' : 'Not a valid email';
-
-    }
   }
 
   createQr() {
     QRCode.toDataURL(this.text, {width: 190, color: {dark: this.color}})
       .then(url => {
         this.image = url;
-        console.log(url);
+        //console.log(url);
       })
       .catch(err => {
         console.error(err);

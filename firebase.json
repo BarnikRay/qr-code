@@ -1,0 +1,23 @@
+{
+  "hosting": {
+    "public": "dist/qr-bar-code",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/qr-code",
+        "destination": "/#/qr-code",
+        "type": 301
+      }
+    ]
+  }
+}
