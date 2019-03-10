@@ -6,7 +6,7 @@
 <div class="qr-creator-header mat-card" fxLayout.gt-sm="row" fxLayout.lt-md="column-reverse" fxLayoutGap="5px">
   <div fxFlex.gt-sm="30%" [fxHide.lt-md]="mobileToggle" class="qr-image">
     <div id="qr_size" fxLayoutAlign="center">
-      <a mat-raised-button color="accent" [href]="image" download="qr.png" id="qr_download">Download</a>
+      <a mat-raised-button color="accent" [href]="image" [download]="'qr'+timestamp+'.png'" id="qr_download">Download</a>
     </div>
     <br>
     <div fxLayoutAlign="center">
@@ -26,7 +26,7 @@
               <mat-form-field>
                 <input matInput formControlName="url" placeholder="Enter the full URL" required>
                 <mat-error *ngIf="urlForm.hasError('required','url')">URL is needed</mat-error>
-                <mat-error *ngIf="urlForm.hasError('pattern','url')">URL is not valid</mat-error>
+                <mat-error *ngIf="urlForm.hasError('pattern','url')">Begin with http(s)://</mat-error>
               </mat-form-field>
               <br>
               <button mat-raised-button color="primary" type="submit" [disabled]="urlForm.invalid">Generate QR Code
