@@ -102,6 +102,7 @@ export class QrCodeComponent implements OnInit {
   }
 
   toggleColorPicker() {
+    this.color='#000000';
     this.colorPicker.close();
   }
 }
