@@ -14,8 +14,8 @@ export class QrCodeComponent implements OnInit {
   url: string = null;
   email: string;
   number: string;
-  msg: string;
-  subject: string;
+  body: string;
+  sub: string;
   fname: string;
   lname: string;
   option: string;
@@ -23,6 +23,7 @@ export class QrCodeComponent implements OnInit {
   image: string = null;
   urlRegex = /^(http|https|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
   mobileToggle=true;
+  timestamp:number=null;
 
   @ViewChild(MatExpansionPanel) colorPicker;
 
@@ -65,7 +66,7 @@ export class QrCodeComponent implements OnInit {
     QRCode.toDataURL(this.text, {width: 190, color: {dark: this.color}})
       .then(url => {
         this.image = url;
-        //console.log(url);
+        this.timestamp=new Date().getTime();
       })
       .catch(err => {
         console.error(err);
@@ -81,10 +82,10 @@ export class QrCodeComponent implements OnInit {
         this.text = this.url;
         break;
       case 'email':
-        this.text = encodeURI('mailto:' + this.email + '?subject=' + this.subject + '&body=' + this.msg);
+        this.text = encodeURI('mailto:' + this.email + '?subject=' + this.sub + '&body=' + this.body);
         break;
       case 'sms':
-        this.text = encodeURI('sms:' + this.number + '?body=' + this.msg);
+        this.text = encodeURI('sms:' + this.number + '?body=' + this.body);
         break;
       case 'vcard':
         this.text = 'BEGIN:VCARD\n' +
@@ -97,7 +98,6 @@ export class QrCodeComponent implements OnInit {
           'x-qq:21588891\n' +
           'END:VCARD';
     }
-    // console.log(this.text);
     this.createQr();
   }
 
