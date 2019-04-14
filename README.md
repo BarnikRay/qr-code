@@ -4,9 +4,9 @@
 
 This is a simple QR code generator built with Angular 7.3.4.
 
-You can generate QR Codes for free under 5 different categories namely URL, Plain Text, SMS, Email and vCard.
+You can generate QR codes for free under 5 different categories namely URL, Plain Text, SMS, Email and vCard.
 
-The QR Codes generated can also be customised with different colors.
+The QR codes generated can also be customised with different colors.
 
 ## Sample Images
 
