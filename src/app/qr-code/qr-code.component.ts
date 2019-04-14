@@ -10,7 +10,7 @@ import {MatExpansionPanel} from '@angular/material';
 })
 
 export class QrCodeComponent implements OnInit {
-  text: string = "https://qr-bar-creator.firebaseapp.com";
+  text: string = "https://qr-code-generator-barnik.firebaseapp.com";
   url: string = null;
   email: string;
   number: string;

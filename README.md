@@ -1,27 +1,36 @@
-# QrBarCode
+# Qr Code Generator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+This is a simple QR code generator built with Angular 7.3.4.
 
-## Development server
+You can generate QR Codes for free under 5 different categories namely URL, Plain Text, SMS, Email and vCard.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The QR Codes generated can also be customised with different colors.
 
-## Code scaffolding
+## Sample Images
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Desktop Samples
 
-## Build
+![Desktop Sample 1](./src/assets/img/Desktop1.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+![Desktop Sample 2](./src/assets/img/Desktop2.png)
 
-## Running unit tests
+<br>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Mobile Samples
 
-## Running end-to-end tests
+![Mobile Sample 1](./src/assets/img/Mobile1.png) ![Mobile Sample 2](./src/assets/img/Mobile2.png)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+##Running locally
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* Install [npm](https://www.npmjs.com/get-npm) globally if not present
+* Clone the repository into your local machine
+* Run npm install inside the base directory in your local machine
+* To start a dev server run `ng serve` and navigate to `http://localhost:4200/` in your browser
+
+##Issues/Contributions
+
+If you want to report an __issue__ please raise an issue in the repo.
+
+If you want to __contribute__ in any way, do raise a PR into develop :smiley:. 
+
