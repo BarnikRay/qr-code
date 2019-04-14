@@ -21,7 +21,7 @@ The QR Codes generated can also be customised with different colors.
 
 ![Mobile Sample 1](./src/assets/img/Mobile1.png) ![Mobile Sample 2](./src/assets/img/Mobile2.png)
 
-## Running locally
+## Run locally
 
 * Install [npm](https://www.npmjs.com/get-npm) globally if not present
 * Clone the repository into your local machine
