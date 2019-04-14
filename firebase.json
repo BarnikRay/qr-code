@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/qr-bar-code",
+    "public": "dist/qr-code",
     "ignore": [
       "firebase.json",
       "**/.*",
