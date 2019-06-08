@@ -1,6 +1,6 @@
 # Qr Code Generator
 
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/BarnikRay/qr-code-generator/blob/master/LICENSE)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://barnik.mit-license.org)
 
 This is a simple QR code generator built with Angular 7.3.4.
 
