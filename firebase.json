@@ -11,13 +11,6 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ],
-    "redirects": [
-      {
-        "source": "/qr-code",
-        "destination": "/#/qr-code",
-        "type": 301
-      }
     ]
   }
 }
